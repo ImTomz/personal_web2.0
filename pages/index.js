@@ -1,9 +1,11 @@
-
+import PolyModel  from "../components/PolyModel/PolyModel"
 
 export default function Home() {
   return (
     <div>
-      <h1>Home Page</h1>
+      <section>
+          <PolyModel />
+      </section>
     </div>
   )
 }

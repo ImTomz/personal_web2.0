@@ -3,4 +3,6 @@
 .main_navigation {
   width: 100%;
   background-color: $background-color;
+  position: fixed;
+  z-index: 9999;
 }
