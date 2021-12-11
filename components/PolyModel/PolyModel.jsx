@@ -1,7 +1,7 @@
-import { useRef } from "react";
-import S_polymodel from "./polymodel.module.scss";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { softShadows } from "@react-three/drei";
+import { useRef } from 'react';
+import S_polymodel from './polymodel.module.scss';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { softShadows } from '@react-three/drei';
 
 // Enable soft shadows from drei
 softShadows();
@@ -11,8 +11,8 @@ const Box = () => {
   useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
   return (
     <mesh position={[0, 1, 0]} castShadow ref={mesh}>
-      <boxBufferGeometry attach="geometry" args={[4, 4, 4]} />
-      <meshStandardMaterial attach="material" color="pink" />
+      <boxBufferGeometry attach='geometry' args={[4, 4, 4]} />
+      <meshStandardMaterial attach='material' color='pink' />
     </mesh>
   );
 };
@@ -46,8 +46,8 @@ const PolyModel = () => {
             rotation={[-Math.PI / 2, 0, 0]}
             position={[0, -3, 0]}
           >
-            <planeBufferGeometry attach="geometry" args={[100, 100]} />
-            <shadowMaterial attach="material" opacity={0.3} />
+            <planeBufferGeometry attach='geometry' args={[100, 100]} />
+            <shadowMaterial attach='material' opacity={0.3} />
           </mesh>
         </group>
 
