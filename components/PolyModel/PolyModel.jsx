@@ -1,21 +1,24 @@
-import { useRef } from 'react';
+import { useRef, Suspense } from 'react';
 import S_polymodel from './polymodel.module.scss';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { softShadows } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { softShadows, useGLTF, OrbitControls } from '@react-three/drei';
 
 // Enable soft shadows from drei
 softShadows();
 
-const Box = () => {
-  const mesh = useRef(null);
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
+function Model({ ...props }) {
+  const group = useRef();
+  const { nodes, materials } = useGLTF('test-compressed.glb');
   return (
-    <mesh position={[0, 1, 0]} castShadow ref={mesh}>
-      <boxBufferGeometry attach='geometry' args={[4, 4, 4]} />
-      <meshStandardMaterial attach='material' color='pink' />
-    </mesh>
+    <group position={[0, -0.5, 0]} ref={group} {...props} dispose={null}>
+      <mesh
+        castShadow
+        geometry={nodes.Head_low.geometry}
+        material={materials['Default_Mat.001']}
+      />
+    </group>
   );
-};
+}
 
 const PolyModel = () => {
   return (
@@ -24,12 +27,12 @@ const PolyModel = () => {
         shadows
         colorManagement
         className={S_polymodel.model_canvas}
-        camera={{ position: [-5, 2, 10], fov: 80 }}
+        camera={{ position: [-2, 1, 3], fov: 50 }}
       >
         <ambientLight intensity={0.3} />
         <directionalLight
           castShadow
-          position={[0, 10, 0]}
+          position={[0, 15, 0]}
           intensity={1.5}
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
@@ -44,14 +47,17 @@ const PolyModel = () => {
           <mesh
             receiveShadow
             rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, -3, 0]}
+            position={[0, -0.53, 0]}
           >
             <planeBufferGeometry attach='geometry' args={[100, 100]} />
-            <shadowMaterial attach='material' opacity={0.3} />
+            <shadowMaterial attach='material' opacity={0.7} />
           </mesh>
         </group>
 
-        <Box />
+        <Suspense fallback={null}>
+          <Model />
+        </Suspense>
+        <OrbitControls />
       </Canvas>
     </>
   );
