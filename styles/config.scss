@@ -1,4 +1,12 @@
 // Colors
-$background-color: red;
+$background-color: #000;
+$white: #fff;
 
 // Typography
+
+// Predefine classes
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}

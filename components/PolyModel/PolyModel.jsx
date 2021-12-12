@@ -1,7 +1,7 @@
 import { useRef, Suspense, useState, useEffect } from 'react';
 import S_polymodel from './polymodel.module.scss';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { softShadows, useGLTF, OrbitControls } from '@react-three/drei';
+import { softShadows, useGLTF, OrbitControls, Stats } from '@react-three/drei';
 
 // Enable soft shadows from drei
 softShadows();
@@ -90,6 +90,7 @@ const PolyModel = () => {
       >
         <CameraControls />
         <Scene />
+        <Stats />
       </Canvas>
     </div>
   );

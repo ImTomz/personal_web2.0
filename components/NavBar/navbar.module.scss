@@ -1,8 +1,15 @@
 @import './config.scss';
+.fixed_navigation {
+  z-index: 9999;
+  width: 100%;
+  background-color: #000;
+}
 
 .main_navigation {
   width: 100%;
-  background-color: $background-color;
-  position: fixed;
-  z-index: 9999;
+  height: 60px;
+  a {
+    color: $white;
+    text-decoration: none;
+  }
 }
